@@ -20,7 +20,7 @@ jobs:
     timeout-minutes: 15
     strategy:
       matrix:
-        python: ['3.13', '3.14']
+        python: ['3.14']
     steps:
       - uses: actions/checkout@v6
         with:
@@ -55,11 +55,7 @@ jobs:
         with:
           python-version: '3.14'
       - run: make build
-      - name: Test installed wheel outside checkout
-        run: |
-          wheel=$(realpath dist/*.whl)
-          cd /tmp
-          uv run --no-project --with "$wheel" python -c 'from amal.eda.systemverilog.const_expr_parser import ConstantExpressionLexer as L, ConstantExpressionParser as P; from amal.eda.systemverilog.const_expr_parser.repl import main; assert callable(main); assert P().parse(L().tokenize("2 + 3 * 4")) == 14'
+      - run: make test-wheel
       - uses: actions/upload-artifact@v7
         with:
           name: ci-distributions

@@ -29,3 +29,13 @@ Publication is manual; no package is uploaded by scaffold creation.
 - Enable GitHub Actions. Release Please requires permission to create pull requests.
 
 Never commit credentials. Local AI/editor state is ignored; AGENTS.md is shared.
+
+## Common Make tasks
+
+Python 3.14 is required. `make help` lists the available tasks, including
+`uv-lock`, `uv-sync`, `uv-sync-upgrade`, `uv-list-outdated`, and `format-python`.
+Use `make test TEST_ARGS="-k evaluation"` for targeted checks.
+`make build test-wheel` verifies the installed distribution outside the checkout.
+Override `WHEEL_DIR` to select a build directory. Once a release is published,
+use `make test-pypi PACKAGE_VERSION=X.Y.Z` or `make test-testpypi PACKAGE_VERSION=X.Y.Z`.
+`make vars` and `make var-PACKAGE_VERSION` display build settings.

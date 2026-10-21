@@ -7,7 +7,7 @@
 | Docs | [![Read the Docs](https://readthedocs.org/projects/pysv-const-expr-parser/badge/?version=latest)](https://pysv-const-expr-parser.readthedocs.io/en/latest/) |
 | Coverage | [![Codecov](https://codecov.io/gh/amal-khailtash/pysv-const-expr-parser/branch/main/graph/badge.svg)](https://codecov.io/gh/amal-khailtash/pysv-const-expr-parser) |
 | Meta | [![License](https://img.shields.io/github/license/amal-khailtash/pysv-const-expr-parser)](https://github.com/amal-khailtash/pysv-const-expr-parser/blob/main/LICENSE) [![Stars](https://img.shields.io/github/stars/amal-khailtash/pysv-const-expr-parser)](https://github.com/amal-khailtash/pysv-const-expr-parser/stargazers) [![Forks](https://img.shields.io/github/forks/amal-khailtash/pysv-const-expr-parser)](https://github.com/amal-khailtash/pysv-const-expr-parser/forks) [![Contributors](https://img.shields.io/github/contributors/amal-khailtash/pysv-const-expr-parser)](https://github.com/amal-khailtash/pysv-const-expr-parser/graphs/contributors) |
-| Standards | [![Python](https://img.shields.io/badge/python-3.13%2B-blue?logo=python)](https://www.python.org/) [![SemVer](https://img.shields.io/badge/SemVer-2.0.0-333333?logo=semver)](https://semver.org/) [![Keep a Changelog](https://img.shields.io/badge/Keep%20a%20Changelog-1.1.0-0c7fb0?logo=keepachangelog&logoColor=white)](https://keepachangelog.com/en/1.1.0/) [![Release Please v4](https://img.shields.io/badge/Release%20Please-v4-blue)](https://github.com/googleapis/release-please-action/tree/v4) |
+| Standards | [![Python](https://img.shields.io/badge/python-3.14-blue?logo=python)](https://www.python.org/) [![SemVer](https://img.shields.io/badge/SemVer-2.0.0-333333?logo=semver)](https://semver.org/) [![Keep a Changelog](https://img.shields.io/badge/Keep%20a%20Changelog-1.1.0-0c7fb0?logo=keepachangelog&logoColor=white)](https://keepachangelog.com/en/1.1.0/) [![Release Please v4](https://img.shields.io/badge/Release%20Please-v4-blue)](https://github.com/googleapis/release-please-action/tree/v4) |
 
 A Python SystemVerilog constant expression parser using **SLY 0.5**.
 The implementation is experimental; IEEE 1800 support is incomplete, particularly
@@ -26,7 +26,7 @@ uv run sv_expr_parser_repl
 uv run python -m amal.eda.systemverilog.const_expr_parser
 ```
 
-Python 3.13+ is supported; local development selects 3.14.
+Python 3.14 is the project baseline.
 
 ```python
 from amal.eda.systemverilog.const_expr_parser import (

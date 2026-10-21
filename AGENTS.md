@@ -14,7 +14,7 @@ Optional pyslang reference tests are comparison material, not evidence of SLY su
   Package the pure Python namespace with uv_build; no native SystemC backend is needed.
 - Honor existing UV_* environment settings. Do not change cache, index, interpreter,
   or installation settings without authorization.
-- Python 3.13 is the minimum; .python-version selects Python 3.14 for local development.
+- Python 3.14 is the baseline; .python-version selects the same version for local development.
 - Keep committed files portable, preserve user changes, and ignore local AI/editor state.
   AGENTS.md and uv.lock must remain trackable.
 

@@ -45,7 +45,7 @@ class Repl:
         while True:
             try:
                 text = self.session.prompt().strip()
-            except (EOFError, KeyboardInterrupt):
+            except EOFError, KeyboardInterrupt:
                 break
             if text in ("quit", "exit"):
                 break
