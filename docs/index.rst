@@ -11,3 +11,4 @@ full IEEE 1800 semantics are not yet implemented.
    api
    AnnexE
    development
+   release_notes
