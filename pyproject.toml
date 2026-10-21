@@ -19,7 +19,7 @@ sv_expr_parser_repl = "amal.eda.systemverilog.const_expr_parser.repl:main"
 
 [project.optional-dependencies]
 # Reference tests only; the production parser and REPL use SLY.
-slang = ["pyslang>=7.0.1,<8"]
+slang = ["pyslang>=7.0.1,<13"]
 
 [build-system]
 requires = ["uv_build>=0.9,<0.14"]
