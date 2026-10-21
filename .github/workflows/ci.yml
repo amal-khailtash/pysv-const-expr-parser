@@ -37,7 +37,7 @@ jobs:
         with:
           name: coverage-${{ matrix.python }}
           path: build/coverage/
-      - uses: codecov/codecov-action@v6
+      - uses: codecov/codecov-action@v7
         if: matrix.python == '3.14'
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
