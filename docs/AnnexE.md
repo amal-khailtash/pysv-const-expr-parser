@@ -12,11 +12,10 @@ blockquote {
 }
 </style>
 
-# Annex E
+# Annex E — SystemVerilog expressions
 
 (normative)
 
-# SystemVerilog expressions
 This standard utilizes SystemVerilog expressions as a means to specify an equation as the value of
 an element.  Expressions can be specified for all predefined element values having an associated type (see
 C.7 complexBaseExpression and C.21 parameters) that allows for an expression to be
@@ -269,7 +268,7 @@ Implementations may set a limit on the maximum length of identifiers, but the li
 characters. If an identifier exceeds the implementation-specific length limit, an error shall be reported.
 
 (e731)=
-### E.3.7.1 Escaped identifier references
+#### E.3.7.1 Escaped identifier references
 Escaped identifier references shall start with the backslash character (`\`) and end with white space (a space,
 tab, or newline). They provide a means of including the characters that are part of the XML schema
 NameChar definition, but are not allowed to be specified directly for an identifier.
@@ -286,7 +285,7 @@ Example
 \a.b
 ```
 
-### E.3.7.2 Keywords
+#### E.3.7.2 Keywords
 Keywords are predefined non-escaped identifiers that are used to define the language constructs. All
 keywords are defined in lowercase only. A keyword preceded by an escape character (see [E.3.7.1](#e731)) is not
 interpreted as a keyword.
@@ -632,7 +631,7 @@ function is called shall only be resolved in views in which the port slice exist
 Example:
 <ipxact:condition>$ipxact_port_value(portSlice) == 4'ha</ipxact:condition>
 
-#### E.5.5 IP-XACT specific escape sequences
+### E.5.5 IP-XACT specific escape sequences
 The IP-XACT specific escape sequences are shown in Table E.8.
 
 *Table E.8—IP-XACT escape sequences*
@@ -676,7 +675,7 @@ Example:
 <ipxact:displayName>component_$ipxact_parameter_value(P)</ipxact:displayName>
 ```
 
-# E.6 Expression language formal syntax (BNF)
+## E.6 Expression language formal syntax (BNF)
 The formal syntax is described using Backus-Naur Form (BNF). The syntax of the expression language
 source is derived from the starting symbol constant_expression (see E.6.3.3).
 The following meta-syntax conventions used are used here:
@@ -686,7 +685,7 @@ The following meta-syntax conventions used are used here:
   — Square brackets ( [ ] ) enclose optional items.
   — Braces ( { } ) enclose items that can be repeated zero or more times.
 
-## E.6.1 Declarations: declaration data types
+### E.6.1 Declarations: declaration data types
 ```bnf
 casting_type        ::= simple_type | constant_primary | signing
 integer_type        ::= integer_vector_type | integer_atom_type
@@ -697,8 +696,8 @@ signing             ::= "signed" | "unsigned"
 simple_type         ::= integer_type | non_integer_type
 ```
 
-## E.6.2 Behavioral statements: Case statements
-### E.6.2.1 Patterns
+### E.6.2 Behavioral statements: Case statements
+#### E.6.2.1 Patterns
 ```bnf
 assignment_pattern ::= "'{" constant_expression { "," constant_expression } "}"
                      | "'{" array_pattern_key ":" constant_expression { "," array_pattern_key ":" constant_expression } "}"
@@ -709,14 +708,14 @@ assignment_pattern_expression_type     ::= integer_atom_type
 constant_assignment_pattern_expression ::= assignment_pattern_expression
 ```
 
-### E.6.2.2 Covergroup declarations
+#### E.6.2.2 Covergroup declarations
 ```bnf
 open_range_list  ::= open_value_range { "," open_value_range }
 open_value_range ::= value_range
 ```
 
-## E.6.3 Expressions
-### E.6.3.1 Concatenations
+### E.6.3 Expressions
+#### E.6.3.1 Concatenations
 ```bnf
 constant_concatenation          ::= "{" constant_expression { "," constant_expression } "}"
 constant_multiple_concatenation ::= "{" constant_expression constant_concatenation "}"
@@ -731,7 +730,7 @@ constant_array_range_expression ::= constant_expression
                                   | constant_expression "-:" constant_expression
 ```
 
-### E.6.3.2 Subroutine calls
+#### E.6.3.2 Subroutine calls
 ```bnf
 math_function_call   ::= math_function_identifier    "(" list_of_arguments                      ")"
 string_function_call ::= string_function_identifier  "(" list_of_arguments                      ")"
@@ -751,7 +750,7 @@ list_of_arguments    ::= [ constant_expression ] { "," [ constant_expression ] }
 `$ipxact_packetfield_value` [^40]
 `$ipxact_port_value` [^41]
 
-### E.6.3.3 Expressions
+#### E.6.3.3 Expressions
 ```bnf
 constant_expression        ::= constant_primary
                              | unary_operator constant_primary
