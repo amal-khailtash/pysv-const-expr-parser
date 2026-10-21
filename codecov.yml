@@ -1,0 +1,16 @@
+coverage:
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 1%
+    patch:
+      default:
+        target: auto
+        informational: true
+comment:
+  layout: "reach,diff,flags,files"
+  behavior: default
+ignore:
+  - "tests/**"
+  - "src/**/visitor-old.py"

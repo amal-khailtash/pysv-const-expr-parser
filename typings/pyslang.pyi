@@ -1,0 +1,13 @@
+"""Type stubs for pyslang module."""
+
+from typing import Any
+
+__version__: str
+
+class ScriptSession:
+    """ScriptSession for evaluating SystemVerilog expressions."""
+    compilation: Any
+    def eval(self, expr: str) -> Any: ...
+    def evalExpression(self, expr: str) -> Any: ...
+    def evalStatement(self, stmt: str) -> Any: ...
+    def getDiagnostics(self) -> Any: ...

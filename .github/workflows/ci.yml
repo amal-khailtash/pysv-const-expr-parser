@@ -1,0 +1,82 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      ref:
+        type: string
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.workflow }}-${{ inputs.ref || github.ref }}
+  cancel-in-progress: true
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        python: ['3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+      - uses: astral-sh/setup-uv@v7
+        with:
+          python-version: ${{ matrix.python }}
+          enable-cache: true
+      - run: uv sync --locked --all-groups
+      - run: make lint
+      - run: make coverage
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: coverage-${{ matrix.python }}
+          path: build/coverage/
+      - uses: codecov/codecov-action@v6
+        if: matrix.python == '3.14'
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: build/coverage/coverage.xml
+          disable_search: true
+          fail_ci_if_error: false
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+      - uses: astral-sh/setup-uv@v7
+        with:
+          python-version: '3.14'
+      - run: make build
+      - name: Test installed wheel outside checkout
+        run: |
+          wheel=$(realpath dist/*.whl)
+          cd /tmp
+          uv run --no-project --with "$wheel" python -c 'from amal.eda.systemverilog.const_expr_parser import ConstantExpressionLexer as L, ConstantExpressionParser as P; from amal.eda.systemverilog.const_expr_parser.repl import main; assert callable(main); assert P().parse(L().tokenize("2 + 3 * 4")) == 14'
+      - uses: actions/upload-artifact@v7
+        with:
+          name: ci-distributions
+          path: dist/*
+  documentation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+      - uses: astral-sh/setup-uv@v7
+        with:
+          python-version: '3.14'
+      - run: uv sync --locked --no-dev --group docs
+      - run: uv run --no-sync sphinx-build -E -W -b html docs build/docs
+      - uses: actions/upload-artifact@v7
+        with:
+          name: documentation
+          path: build/docs/
